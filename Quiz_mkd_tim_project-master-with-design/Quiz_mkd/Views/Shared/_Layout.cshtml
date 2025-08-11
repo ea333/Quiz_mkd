@@ -1,0 +1,189 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MKA</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/quiz-list.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/welcome-to-quizz.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/add-quiz.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/edit-quiz.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/quiz-details.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/question.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/tables.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/soopstenija.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/about.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/rang-list.css" asp-append-version="true" />
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        /* Hero Titles (main banners) */
+        .hero-title {
+            font-size: 4rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.2); /* subtle white glow */
+        }
+
+        @@media (max-width: 992px) {
+            .hero-title
+
+        {
+            font-size: 3rem;
+        }
+
+        }
+
+        @@media (max-width: 576px) {
+            .hero-title
+
+        {
+            font-size: 2rem;
+        }
+
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.15);
+        }
+
+        @@media (max-width: 576px) {
+            .section-title
+
+        {
+            font-size: 1.8rem;
+        }
+
+        }
+
+        /* Smaller Card Titles */
+        .card-title-custom {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+    </style>
+    
+    
+    
+@*     <link rel="stylesheet" href="~/Quiz_mkd.styles.css" asp-append-version="true" />
+ *@</head>
+<body style="background:#e9edf5">
+    <header>
+        <nav @* class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3" *@ class="navbar navbar-expand-lg " style="background-color:#003463;" data-bs-theme="dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MKA</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Дома</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="User" asp-controller="ForUs" asp-action="Index">За нас</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="User" asp-controller="ForTheAccociation" asp-action="Index">За Асоцијација</a>
+                        </li>
+                        
+                      @*   <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Answer" asp-action="Index">Одговори</a>
+                        </li> *@
+
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="User" asp-controller="Event" asp-action="Index">Настани</a>
+                        </li>
+                        
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="User" asp-controller="Quiz" asp-action="Index">Квиз</a>
+                        </li>
+                       
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="User" asp-controller="RangList" asp-action="Index">Ранг Листа</a>
+                        </li>
+
+                        @if (User.IsInRole(SD.Role_Admin))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link " asp-area="Admin" asp-controller="TypeQuestion" asp-action="Index">Тип на Квиз</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Admin" asp-controller="User" asp-action="Index">Users</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Admin" asp-controller="Email" asp-action="Create">Прати Маил</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Admin" asp-controller="Category" asp-action="Index">Категорија</a>
+                            </li>
+
+
+                        }
+                      
+                    </ul>
+                    
+                    <partial name="_LoginPartial"/>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div >
+        <main role="main" >
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted" style="display:flex; flex-direction:column; justify-content:space-between; align-items:center;">
+        <div style="display:flex; flex-direction:row; justify-content:center; align-items:center; width:100%; color:#003463; text-align:start; margin-top:1.5em;margin-bottom:1.5em;" id="footer-first-line">
+            <h5 style="width:auto; margin-left:1em; margin-right:1em;">Контакт:</h5>
+            <p style="width:auto; margin:0; margin-left:1em; margin-right:1em;">mka.mkd21@gmail.com</p>
+            <a href="https://www.facebook.com/makedonska.kviz.asocijacija" style="width:auto; text-decoration:none; margin-left:1em; margin-right:1em; font-size:1.2em;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+                            <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951" />
+                        </svg></a>
+        </div>
+        
+        <div style="display:flex; flex-direction:row; justify-content:space-between; align-items:center; width:100%; " id="footer-second-line">
+            <div class="text-dark width:20%;">
+                &copy; МКА 
+            </div>
+            <div class="text" style="color:lightslategray; text-align:end;  width:80%;">
+                Page developed by: FINKI Students - Timski Proekt
+                <br> By prof. Lasko Basnarkov
+            </div>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+          duration: 600,   
+          easing: 'ease-in-out',
+          once: true       
+        });
+    </script>
+
+    
+</body>
+
+
+</html>

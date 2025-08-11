@@ -1,0 +1,119 @@
+﻿@model ShowRangListOptionsVM
+
+<form asp-area="User" asp-controller="RangList" asp-action="FilterRangList" method="post" id="rang-list-form">
+    <div id="rang-list-fillter">
+        <div class="rang-list-select-option">
+            <div >
+                <label class="p-0 text-black">Селектирај Настан</label>
+                <select asp-for="SelectedEventId" asp-items="@Model.Events" class="p-0 form-select">
+                    <option value="" selected>--Селектирај Настан--</option>
+                </select>
+                <span asp-validation-for="SelectedEventId" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="rang-list-select-option">
+            <div >
+                <label >Селектирај Категорија</label>
+                <select asp-for="SelectedCategoryId" asp-items="@Model.Categories" class="p-0 form-select">
+                    <option value="" selected>--Селектирај Категорија--</option>
+                </select>
+                <span asp-validation-for="SelectedCategoryId" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="rang-list-select-option">
+            <div >
+                <label class="p-0 text-black">Селектирај Година</label>
+                <select asp-for="SelectedYear" asp-items="@Model.EventsByYear" class="p-0 form-select">
+                    <option value="" selected>--Селектирај Година--</option>
+                </select>
+                <span asp-validation-for="SelectedYear" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="rang-list-button">
+            <button type="submit" class="btn btn-success">Пребарај</button>
+        </div>
+    </div>
+</form>
+
+
+
+
+
+<div id="table-container">
+   
+
+    <table>
+        <thead>
+            <tr>
+                <th>Место</th>
+                <th>Име и Презиме</th>
+                <th>Град</th>
+                @if (Model?.ShowRangList is not null)
+                {
+                    @foreach (var category in Model?.ShowRangList?.CategoriesRangList ?? new())
+                    {
+                        <th>@category?.Category?.categoryName</th>
+                    }
+                }
+               
+
+                @if ((Model?.SelectedEventId != null && Model?.SelectedCategoryId == null)
+                || (Model?.SelectedCategoryId == null && Model?.SelectedYear != null) 
+                || (Model?.SelectedCategoryId == null && Model?.SelectedEventId != null && Model?.SelectedYear != null))
+                        {
+                            <th>Вкупно</th>
+                        }
+                
+                
+
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int i = 1;
+            }
+            @if (Model?.ShowRangList is not null)
+            {
+
+                @foreach (var user in Model?.ShowRangList?.RangListUsers ?? new())
+                {
+                    <tr>
+                        <td>@(i++)</td>
+                        <td>@user?.User?.NameUser @user?.User?.Surname</td>
+                        <td>@user?.User?.PlaceOfOrigin</td>
+                        @foreach (var category in Model?.ShowRangList?.CategoriesRangList)
+                        {
+                            var userCategory = Model?.ShowRangList?.CategoryUsers?
+                            .FirstOrDefault(cu => cu.UserId == user?.User?.Id && cu.CategoryId == category?.Category?.Id);
+
+                            <td>@(userCategory?.Points ?? 0)</td> <!-- If no points, default to 0 -->
+                        }
+
+                        @if ((Model?.SelectedEventId != null && Model?.SelectedCategoryId == null)
+                       || (Model?.SelectedCategoryId == null && Model?.SelectedYear != null)
+                       || (Model?.SelectedCategoryId == null && Model?.SelectedEventId != null && Model?.SelectedYear != null))
+                       {
+                            <td>@user?.Points</td>
+                        }
+                       
+
+
+
+                    </tr>
+                }
+
+            }
+            else
+            {
+                <p class="text-danger">Нема ништо</p>
+            }
+
+
+
+        </tbody>
+
+    </table>
+</div>

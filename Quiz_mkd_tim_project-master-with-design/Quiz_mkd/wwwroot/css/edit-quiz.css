@@ -1,0 +1,13 @@
+﻿.edit-card {
+    width: 90vw;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 1em;
+    align-items: center;
+    color: black;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+

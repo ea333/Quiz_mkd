@@ -1,0 +1,50 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Profile";
+    ViewData["ActivePage"] = ManageNavPages.Index;
+}
+
+<h3>@ViewData["Title"]</h3>
+<partial name="_StatusMessage" for="StatusMessage" />
+
+        <form id="registerForm" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+            <div class="form-floating mb-3">
+                <input asp-for="Username" class="form-control" placeholder="Внеси го твојот маил." disabled />
+                <label asp-for="Username" class="form-label"></label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input asp-for="Input.NameUser" class="form-control" placeholder="Внеси го твоето име." />
+                <label asp-for="Input.NameUser" class="form-label"></label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Surname" class="form-control" placeholder="Внеси го твоето презиме." />
+                <label asp-for="Input.Surname" class="form-label"></label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input asp-for="Input.PlaceOfOrigin" class="form-control" placeholder="Внеси го твоето место на потекнување." />
+                <label asp-for="Input.PlaceOfOrigin" class="form-label"></label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input asp-for="Input.PhoneNumber" class="form-control" placeholder="Внеси го твојот тел. број." />
+                <label asp-for="Input.PhoneNumber" class="form-label"></label>
+            </div>
+
+
+        @*     <div class="form-floating mb-3">
+                <input asp-for="Input.PhoneNumber" class="form-control" placeholder="Please enter your phone number."/>
+                <label asp-for="Input.PhoneNumber" class="form-label"></label>
+                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+            </div> *@
+            <button type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
+        </form>
+ 
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

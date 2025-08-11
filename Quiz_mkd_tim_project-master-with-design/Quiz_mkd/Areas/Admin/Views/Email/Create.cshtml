@@ -1,0 +1,42 @@
+﻿@model EmailVM
+
+
+<div id="create-question-card">
+
+    <h2 class="text-primary">Compose Email</h2>
+
+        @if (Model.emailsSent) 
+        {
+        <h1 class ="text-primary">Маилови се пратени</h1>
+        }
+
+    <form method="post">
+        <!-- Subject Input -->
+    <div class="mb-3 text-primary">
+            <label asp-for="@Model.subject" class="form-label">Subject</label>
+            <input asp-for="@Model.subject"  class="form-control" placeholder="Enter subject" required>
+        </div>
+
+        <!-- Message Textarea -->
+    <div class="mb-3 text-primary">
+            <label asp-for="@Model.htmlMessage" class=" form-label">Message</label>
+            <textarea asp-for="@Model.htmlMessage"class=" form-control" rows="5" placeholder="Write your message here..." required></textarea>
+        </div>
+
+        @* <!-- File Upload (Image) -->
+        <div class="mb-3">
+            <label for="imageUpload" class="form-label">Attach Image</label>
+            <input type="file" class="form-control" id="imageUpload" accept="image/*">
+        </div>
+
+        <!-- Image Preview -->
+        <div class="mb-3">
+            <img id="imagePreview" src="" alt="Image Preview" class="img-fluid d-none" style="max-width: 300px;">
+        </div> *@
+
+        <!-- Send Button -->
+        <button type="submit" class="btn btn-primary">Send Email</button>
+    </form>
+</div>
+
+

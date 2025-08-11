@@ -1,0 +1,48 @@
+﻿@model RangListVM
+
+<div class="edit-card">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-6 text-center">
+                <h2 class="text-white py-2">Додади поени на @Model.User.NameUser @Model.User.Surname</h2>
+            </div>
+            <div class="col-6 text-center">
+                <h2 class="text-white py-2">За настан @Model.Event.Name</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body p-4">
+        <form method="post">
+            <input type="hidden" asp-for="Event.Id"/>
+            <input type="hidden" asp-for="User.Id"/>
+
+            <div class="border p-3 mt-4">
+               
+                @for (int i = 0; i < Model?.CategoryUsers?.Count;i++)  
+                {
+
+                    <div class="mb-3 row p-1">
+                        <label class=" p-0">@Model.CategoryUsers[i].Category.categoryName</label>
+                        <input type=number asp-for="CategoryUsers[i].Points" class="form-control" />
+                        <span asp-validation-for="CategoryUsers[i].Points" class="text-danger"></span>
+                        <input type="hidden" asp-for="CategoryUsers[i].CategoryId" />
+                        <input type="hidden" asp-for="CategoryUsers[i].RangListId" />
+                        <input type="hidden" asp-for="CategoryUsers[i].UserId" />
+
+                    </div>
+                }
+
+                <div class="row" id="question-buttons">
+                    <div class="col-6 col-md-3">
+                        <button type="submit" class="btn btn-primary form-control">Додаj</button>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <a asp-area="Admin" asp-controller="RangList" asp-action="Index" asp-route-eventId="@Model.Event.Id" class="btn btn-primary form-control">Врати се назад</a>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>

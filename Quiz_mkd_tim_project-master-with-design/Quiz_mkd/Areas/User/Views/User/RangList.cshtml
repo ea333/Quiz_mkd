@@ -1,0 +1,41 @@
+﻿@model IEnumerable<ApplicationUser>
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="text-primary">Ранг Листа</h2>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                
+                <th>Место</th>
+                <th>Име</th>
+                <th>Презиме</th>
+                <th>Поени</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int i = 1;
+            }
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@(i++)</td>
+                    <td>@item?.NameUser</td>
+                    <td>@item?.Surname</td>
+                    <td>@(item?.Points == null ? "0" : item?.Points)</td>
+                    
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+
+
+

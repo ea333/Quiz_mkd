@@ -1,0 +1,60 @@
+﻿@model IEnumerable<ApplicationUserVM>
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="text-primary">Корисници</h2>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-striped" id="tabela" style="background-color:white">
+        <thead>
+            <tr>
+                
+                <th>Email</th>
+                <th>Име</th>
+                <th>Презиме</th>
+                 <th></th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="user-email">@item?.User?.Email</td>
+                    <td>@item?.User?.NameUser</td>
+                    <td>@item?.User?.Surname</td>
+
+                    <td >
+                        <div  role="group" id="actions">
+                            <a asp-area="Admin" asp-controller="User" asp-action="DeleteUser" asp-route-userId="@item?.User?.Id" class="btn btn-danger">
+                                Избриши
+                            </a>
+
+                            @if (item?.Role == "User")
+                            {
+                                <a asp-area="Admin" asp-controller="User" asp-action="ChangeRole" asp-route-userId="@item?.User?.Id" asp-route-role="Admin" class="btn btn-outline-primary">
+                                    Направи Админ
+                                </a>
+                            }else
+                            {
+                                <a asp-area="Admin" asp-controller="User" asp-action="ChangeRole" asp-route-userId="@item?.User?.Id" asp-route-role="User" class="btn btn-outline-primary">
+                                    Направи Корисник
+                                </a>
+                            }
+
+
+                        
+                         
+                          
+                        </div>
+
+                    </td>
+
+                </tr>
+            }
+
+        </tbody>
+
+    </table>

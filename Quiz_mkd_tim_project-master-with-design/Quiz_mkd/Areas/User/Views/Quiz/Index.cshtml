@@ -1,0 +1,61 @@
+﻿@model List<Quiz>
+
+
+
+<div class="quiz-container">
+    <div id="events-top">
+        <div>
+            <h2>Онлајн Квизови</h2>
+        </div>
+
+        @if (User.IsInRole(SD.Role_Admin))
+        {
+            <div>
+                <a asp-area="Admin" asp-controller="Quiz" asp-action="Create" class="btn btn-primary"> <i class="bi bi-plus-circle"></i> Додај нов квиз</a>
+
+            </div>
+        }
+    </div>
+    <div class="quiz-cards-container" >
+
+    @for(int i=0; i < Model.Count; i++)
+    {
+         var item = Model[i];
+        
+
+        
+
+            <div class="card">
+                <img class="card-img-top" src="@item.ImageUrl" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">@item.Name</h5>
+                    
+                </div>
+                <div class="card-footer">
+                    <a asp-area="User" asp-controller="PlayQuiz" asp-action="Index" asp-route-quizId="@item?.Id" class="btn btn-warning mx-2" id="admin-button">
+                        Играј Квиз
+                    </a>
+                    <div class="admin-buttons">
+                    @if (User.IsInRole(SD.Role_Admin))
+                    {
+                        <a asp-area="Admin" asp-controller="Quiz" asp-action="Edit" asp-route-id="@item?.Id"  class="admin-button">
+                            <i class="bi bi-pencil-square"></i>Измени
+                        </a>
+                        <a asp-area="Admin" asp-controller="Quiz" asp-action="Delete" asp-route-id="@item?.Id"  class="admin-button">
+                            <i class="bi bi-trash-fill"></i>Избриши
+                        </a>
+                        <a asp-area="Admin" asp-controller="Quiz" asp-action="Detail" asp-route-quizId="@item?.Id"  class="admin-button">
+                            Разгледај Квиз
+                        </a>
+                    }
+                    </div>
+                   
+                </div>
+
+            </div>
+        
+       
+    }
+    </div>
+
+</div>

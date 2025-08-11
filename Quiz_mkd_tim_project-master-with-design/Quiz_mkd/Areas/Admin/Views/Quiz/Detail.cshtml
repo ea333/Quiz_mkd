@@ -1,0 +1,86 @@
+﻿@model QuizVM
+<div class="quiz-details-container">
+    <div class="row pt-4 pb-3">
+        <div class="col-4">
+            <h2 class="text-primary">Квиз: @Model.Quiz.Name</h2>
+        </div>
+      
+
+        <div class="col-4">
+            <img src="@Model.Quiz.ImageUrl" class="img-fluid" />
+        </div>
+
+    </div>
+
+    <div class="row pt-4 pb-3">
+        <div class="col-3">
+            <a asp-area="Admin" asp-controller="Question"
+               asp-action="Create" asp-route-quizId="@Model.Quiz.Id"
+               class="btn btn-primary">
+                Креирај Прашање
+            </a>
+
+        </div>
+      
+    </div>
+
+    <table class="table table-bordered table-striped" id="quiz-table">
+        <thead>
+            <tr>
+                @{
+                    int numQuestions = Model.QuestionList.Count();
+                    int numAnswers = 4;
+                }
+                
+              @*   @for (int i = 1; i <= numQuestions; i++)
+                {
+                    <th>Прашање @i:</th>
+
+                } *@
+                <th>Прашање</th>
+                @for (int i = 1; i <= numAnswers; i++)
+                {
+                    <th>Одговор @i:</th>
+
+                }
+                <th>Акција</th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+          
+            @foreach (var item in Model.QuestionList)
+            {
+                <tr>
+
+                    <td>@item?.Text</td>
+                    @foreach (var answer in item.AnswersList)
+                        {
+                            <td>@answer?.Text - @(answer?.isCorrect == true ? "Точен" : "Неточен")</td>
+
+                        }
+                        
+                        
+                   
+
+                    <td id="td-buttons">
+                        <div class="w-75 btn-group" role="group" id="action-buttons">
+                            <a asp-area="Admin" asp-controller="Question" asp-action="Edit" asp-route-id="@item?.Id" class="btn btn-primary mx-2">
+                                Измени
+                            </a>
+                            <a asp-area="Admin" asp-controller="Question" asp-action="Delete" asp-route-id="@item?.Id" class="btn btn-danger mx-2">
+                                Избриши
+                            </a>
+                        </div>
+
+                    </td>
+
+                </tr>
+           } 
+
+        </tbody>
+
+    </table>
+
+  </div>

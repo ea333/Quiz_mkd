@@ -1,0 +1,146 @@
+﻿@model QuestionVM
+
+<div class="card shadow border-0 mt-4" id="create-question-card">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="py-2">Креирај прашање</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <form method="post">
+            <input asp-for="Quiz.Id" type="hidden" />
+            <div class="border p-3 mt-4">
+
+                <div class="mb-3 row p-1">
+
+                    <label asp-for="Quiz.Name" class="p-0"></label>
+                    <input disabled asp-for="Quiz.Name" class="form-control" />
+                    <span asp-validation-for="Quiz.Name" class="text-danger"></span>
+                </div>
+
+
+                <div class="mb-3 row p-1">
+                    <label class="p-0">Тип на Прашање</label>
+                    <select asp-for="TypeQuestionId" asp-items="@Model.TypeQuestionList" class="p-0 form-select">
+                        <option value="" disabled selected>--Сите типови--</option>
+                    </select>
+                </div>
+
+
+                <div class="mb-3 row p-1">
+
+                    <label asp-for="Question.Text" class="p-0"></label>
+                    <input asp-for="Question.Text" class="form-control" />
+                    <span asp-validation-for="Question.Text" class="text-danger"></span>
+                </div>
+
+
+                <div class="mb-3 row p-1">
+                    <label asp-for="Answer1.Text" class="p-0"></label>
+                    <input asp-for="Answer1.Text" class="form-control" />
+                    <span asp-validation-for="Answer1.Text" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3 row p-1">
+                    <label asp-for="Answer1.isCorrect" class="p-0"></label>
+                    <div>
+                        <label class="form-check-label" for="isCorrectTrue">Точен</label>
+                        <input type="radio" id="isCorrectTrue1" asp-for="Answer1.isCorrect" value="true" class="form-check-input" />
+
+                        <label class="form-check-label" for="isCorrectFalse">Неточен</label>
+                        <input type="radio" id="isCorrectFalse1" asp-for="Answer1.isCorrect" value="false" class="form-check-input" />
+                    </div>
+                    <span asp-validation-for="Answer1.isCorrect" class="text-danger"></span>
+                </div>
+
+
+                <div class="mb-3 row p-1">
+                    <label asp-for="Answer2.Text" class="p-0"></label>
+                    <input asp-for="Answer2.Text" class="form-control" />
+                    <span asp-validation-for="Answer2.Text" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3 row p-1">
+                    <label asp-for="Answer2.isCorrect" class="p-0"></label>
+                    <div>
+                        <label class="form-check-label" for="isCorrectTrue">Точен</label>
+                        <input type="radio" id="isCorrectTrue2" asp-for="Answer2.isCorrect" value="true" class="form-check-input" />
+
+                        <label class="form-check-label" for="isCorrectFalse">Неточен</label>
+                        <input type="radio" id="isCorrectFalse2" asp-for="Answer2.isCorrect" value="false" class="form-check-input" />
+                    </div>
+                    <span asp-validation-for="Answer2.isCorrect" class="text-danger"></span>
+                </div>
+
+
+                <div class="mb-3 row p-1">
+                    <label asp-for="Answer3.Text" class="p-0"></label>
+                    <input asp-for="Answer3.Text" class="form-control" />
+                    <span asp-validation-for="Answer3.Text" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3 row p-1">
+                    <label asp-for="Answer3.isCorrect" class="p-0"></label>
+                    <div>
+                        <label class="form-check-label" for="isCorrectTrue">Точен</label>
+                        <input type="radio" id="isCorrectTrue3" asp-for="Answer3.isCorrect" value="true" class="form-check-input" />
+
+                        <label class="form-check-label" for="isCorrectFalse">Неточен</label>
+                        <input type="radio" id="isCorrectFalse3" asp-for="Answer3.isCorrect" value="false" class="form-check-input" />
+                    </div>
+                    <span asp-validation-for="Answer3.isCorrect" class="text-danger"></span>
+                </div>
+
+
+                <div class="mb-3 row p-1">
+                    <label asp-for="Answer4.Text" class="p-0"></label>
+                    <input asp-for="Answer4.Text" class="form-control" />
+                    <span asp-validation-for="Answer4.Text" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3 row p-1">
+                    <label asp-for="Answer4.isCorrect" class="p-0"></label>
+                    <div>
+                        <label class="form-check-label" for="isCorrectTrue">Точен</label>
+                        <input type="radio" id="isCorrectTrue4" asp-for="Answer4.isCorrect" value="true" class="form-check-input" />
+
+                        <label class="form-check-label" for="isCorrectFalse">Неточен</label>
+                        <input type="radio" id="isCorrectFalse4" asp-for="Answer4.isCorrect" value="false" class="form-check-input" />
+                    </div>
+                    <span asp-validation-for="Answer4.isCorrect" class="text-danger"></span>
+                </div>
+
+
+
+
+                <div class="row" id="question-buttons">
+
+                        <div >
+                            <button type="submit" class="btn btn-primary form-control">Зачувај</button>
+                        </div>
+
+     
+                    <div>
+                        <a asp-area="User" asp-controller="Quiz" asp-action="Index" class="btn btn-primary form-control">Врати се назад</a>
+                    </div>
+                </div>
+
+                @if (Model.Question.Id != 0)
+                {
+                    <div class="mb-3 row p-1">
+                        <label class="p-0">Одговор</label>
+
+                        <div class="col-6 col-md-3">
+                            <a asp-area="Admin" asp-controller="Answer" asp-action="Create" asp-route-questionId="@Model.Question.Id" class="btn btn-primary border form-control">Додаj Одговор</a>
+                        </div>
+
+                    </div>
+                }
+
+
+            </div>
+        </form>
+    </div>
+</div>

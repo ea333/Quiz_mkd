@@ -1,0 +1,31 @@
+﻿@model QuestionVM
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" asp-append-version="true" href="~/css/choose-question.css" />
+ 
+</head>
+<style>
+    .option:hover {
+        background-color: #77d1ed;
+    }
+</style>
+<body>
+    <div class="question-container">
+        <h1 class="question">@Model.Question.Text</h1>
+        <div class="options">
+            
+            @foreach (var answer in Model.Answers) 
+            {
+                <a class="btn btn-primary my-2" asp-area="User" asp-controller="PlayQuiz" asp-action="NextQuestion"
+             asp-route-answerId="@answer.Id" asp-route-quizId="@Model.Quiz.Id" asp-route-questionId="@Model.Question.Id"
+             >@answer.Text</a>
+            }
+
+        </div>
+    </div>
+    </div>
+</body>
+</html>

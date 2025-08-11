@@ -1,0 +1,23 @@
+﻿@model PlayQuizVM
+<div class="welcome-to-quiz-container">
+    <h1>Добре дојде на квизот @Model?.Quiz?.Name</h1>
+    <p>Тестирај го своето знаење и забавувај се!</p>
+    <div class="row" id="start-buttons">
+
+        <div>
+            <a asp-controller="PlayQuiz" asp-action="ChooseQuestion" asp-route-quizId="@Model?.Quiz.Id" asp-route-firstCall="true" class="btn btn-success" id="btn-start">Започни игра</a>
+        </div>
+
+        <div>
+            @if (Model.Event == null)
+            {
+                <a asp-area="User" asp-controller="Quiz" asp-action="Index" class="btn btn-danger" id="btn-quit-1">Врати се назад</a>
+            }else
+            {
+                <a asp-area="User" asp-controller="Event" asp-action="Index" class="btn btn-danger" id="btn-quit-2">Врати се назад</a>
+            }
+        </div>
+
+
+    </div>
+</div>

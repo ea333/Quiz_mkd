@@ -1,0 +1,36 @@
+﻿@model QuestionVM
+
+<div class="card shadow border-0 mt-4" id="create-question-card">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="py-2">Измени Прашање</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4" id="card-b">
+        <form method="post">
+            <input asp-for="Question.QuizId" type="hidden" />          
+            <input asp-for="Question.Id" type="hidden" />          
+            <div class="border p-3 mt-4">
+
+                <div class="mb-3 row p-1">
+                    <label asp-for="Question.Text" class="p-0"></label>
+                    <input asp-for="Question.Text" class="form-control" />
+                    <span asp-validation-for="Question.Text" class="text-danger"></span>
+                </div>
+
+                <div class="row">
+                   
+                    <div>
+                        <a asp-area="Admin" asp-controller="Answer" asp-action="Index" asp-route-id="@Model.Question.Id" class="btn btn-outline-secondary border form-control">Промени Одговори</a>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-primary form-control">Зачувај</button>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,62 @@
+﻿@model PlayQuizVM
+
+    <style>
+       
+        .results-container{
+        height: 80vh;
+        padding: 20px; /* Adds spacing inside the container */
+        text-align: center; /* Centers text content */
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        
+        }
+
+        .progress-bar {
+            width: 65vw;
+            background: #ddd;
+            height: 25px;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .progress {
+            height: 100%;
+            background: #4CAF50;
+            text-align: center;
+            color: white;
+            line-height: 25px;
+            font-weight: bold;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #007bff;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+
+            .btn:hover {
+                background: #0056b3;
+            }
+  
+</style>
+
+    <div class="results-container">
+        <h2 style="color:black;">Го заврши квизот @Model.Quiz.Name!</h2>
+    <p style="color:black;">Одговори точно <strong>@Model.answersCorrect</strong> од <strong>@Model.totalAnswers</strong></p>
+
+        <div class="progress-bar">
+            <div class="progress" id="progressBar" style="width: @((Model.answersCorrect * 100 / Model.totalAnswers))%">
+                @((Model.answersCorrect * 100 / Model.totalAnswers))%
+            </div>
+        </div>
+</div>
+
+
+

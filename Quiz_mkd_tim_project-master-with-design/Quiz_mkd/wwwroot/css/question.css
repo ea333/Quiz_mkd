@@ -1,0 +1,38 @@
+﻿#create-question-card{
+    display:flex;
+    flex-direction:column;
+}
+
+input[type="radio"] {
+    appearance: auto;
+    width: 18px;
+    height: 18px;
+    accent-color: #0d6efd; /* Changes the selected circle color in modern browsers */
+    margin-right: 6px;
+}
+
+#question-buttons{
+    display:flex;
+    flex-direction:row;
+}
+
+#question-buttons div{
+    width:50%;
+}
+
+#question-buttons button{
+    width:100%;
+}
+#question-buttons a {
+        width: 100%;
+}
+
+#card-b{
+    width:80%;
+}
+#card-b a{
+    font-size:1.2em;
+}
+#card-b button {
+    font-size: 1.2em;
+}

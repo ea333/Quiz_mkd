@@ -1,0 +1,56 @@
+﻿@model IEnumerable<TypeQuestion>
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="text-primary">Тип на Квиз</h2>
+        </div>
+
+        <div class="col-6 text-end">
+            <a asp-area="Admin" asp-controller="TypeQuestion" asp-action="Create" class="btn btn-primary"> <i class="bi bi-plus-circle"></i> Додај нов Тип на Квиз</a>
+
+        </div>
+    </div>
+
+    <table class="table table-bordered table-striped" id="tabela">
+        <thead>
+            <tr>
+                <th>Тип</th>
+                <th>Квиз</th>
+                <th></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item?.Type</td>
+                    @{
+                        string text = " ";
+                    }
+                    @foreach (var quiz in item?.QuestionList)
+                    {
+                        text += quiz?.Text+", ";
+                    }
+                    <td>@text</td>
+                  
+
+                    <td>
+                        <div  role="group" id="actions">
+                            <a asp-area="Admin" asp-controller="TypeQuestion" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary mx-2">
+                                <i class="bi bi-pencil-square"></i>Измени
+                            </a>
+                            <a asp-area="Admin" asp-controller="TypeQuestion" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger mx-2">
+                                <i class="bi bi-trash-fill"></i>Избриши
+                            </a>
+                        </div>
+
+                    </td>
+
+                </tr>
+            }
+
+        </tbody>
+
+    </table>

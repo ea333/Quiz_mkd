@@ -1,0 +1,24 @@
+﻿#action-buttons{
+    display:flex;
+    flex-direction:column;
+    width:100%;
+    
+}
+
+
+.quiz-details-container{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content: center
+}
+
+#quiz-table{
+    width:100%;
+    font-size:1.3vw;
+}
+#action-buttons a {
+    font-size: 1vw;
+    display: block;
+    width: 100%;
+}

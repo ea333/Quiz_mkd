@@ -1,0 +1,75 @@
+﻿@model RangListVM
+
+<div>
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="text-primary">Ранг листа за @Model.Event.Name</h2>
+        </div>
+        <div class="col-4">
+            <a class="btn btn-info" asp-area="Admin"
+               asp-controller="RangList" asp-action="EditTable"
+               asp-route-eventId="@Model.Event.Id">Измени ги колоните од табелата</a>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-striped" id="tabela">
+        <thead>
+            <tr>
+                <th>ИД</th>
+                <th>Име и Презиме</th>
+                <th>Град</th>
+                @foreach (var category in Model.CategoriesRangList)
+                {
+                    <th>@category.Category.categoryName</th>
+                }
+                 <th>Вкупно</th>
+                 <th></th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int i = 1;
+            }
+            @foreach (var user in Model.RangListUsers)
+            {
+                <tr>
+                    <td>@(i++)</td>
+                    <td>@user?.User.NameUser @user?.User.Surname</td>
+                    <td>@user?.User.PlaceOfOrigin</td>
+                    @foreach (var category in Model.CategoriesRangList)
+                    {
+                        var userCategory = Model.CategoryUsers
+                        .FirstOrDefault(cu => cu.UserId == user.User.Id && cu.CategoryId == category.Category.Id);
+
+                        <td>@(userCategory?.Points ?? 0)</td> <!-- If no points, default to 0 -->
+                    }
+                    <td>@user.Points</td>
+
+                    <td>
+                        <div class=" btn-group" role="group" id="question-buttons">
+                            <a asp-area="Admin" asp-controller="RangList"
+                            asp-action="AddPointsToUser" asp-route-userId="@user?.User?.Id"
+                               asp-route-eventId="@Model.Event.Id"
+                               class="btn btn-primary mx-2">
+                                Додај поени
+                            </a>
+
+                            <a asp-area="Admin" asp-controller="RangList"
+                               asp-action="RemoveUserFromRangList" asp-route-userId="@user?.User?.Id"
+                               asp-route-eventId="@Model.Event.Id"
+                               class="btn btn-danger mx-2">
+                                Отстрани
+                            </a>
+                          
+                        </div>
+
+                    </td>
+
+                </tr>
+              }
+            
+
+        </tbody>
+
+    </table>

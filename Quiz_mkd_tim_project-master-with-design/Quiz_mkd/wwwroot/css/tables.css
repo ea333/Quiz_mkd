@@ -1,0 +1,61 @@
+﻿
+
+#actions a{
+    width:50%;
+}
+
+#tabela{
+    width:90%;
+   
+}
+
+#tabela tbody tr{
+   font-size: 1.3vw;
+}
+
+#actions {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+}
+    #actions a {
+        font-size: 1.2vw;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+
+
+.user-email{
+    font-weight:bold;
+}
+
+@media(max-width:900px){
+    #tabela tbody tr {
+        font-size: 2vw;
+    }
+    #actions a {
+        font-size: 2vw;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    #tabela .btn-group{
+        display:flex;
+        flex-direction:column;
+    }
+}
+
+@media(max-width:700px){
+    #tabela th{
+        font-size:0.6em;
+    }
+    #tabela a {
+        font-size: 0.6em;
+    }
+
+}

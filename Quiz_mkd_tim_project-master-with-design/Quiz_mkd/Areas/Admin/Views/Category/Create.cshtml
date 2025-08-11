@@ -1,0 +1,33 @@
+﻿@model Category
+
+<div class="card shadow border-0 mt-4" id="create-question-card">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">Креирај Нова Категорија</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <form method="post">
+            <div class="border p-3 mt-4">
+                <div class="mb-3 row p-1">
+                    <label asp-for="categoryName" class="p-0"></label>
+                    <input asp-for="categoryName" class="form-control" />
+                    <span asp-validation-for="categoryName" class="text-danger"></span>
+                </div>
+
+
+                <div class="row">
+                    <div >
+                        <button type="submit" class="btn btn-primary form-control">Зачувај</button>
+                    </div>
+                    <div >
+                        <a asp-area="Admin" asp-controller="Category" asp-action="Index" class="btn btn-primary form-control">Врати се назад</a>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Category>
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="text-primary">Категории</h2>
+        </div>
+
+        <div class="col-6 text-end">
+            <a asp-area="Admin" asp-controller="Category" asp-action="Create" class="btn btn-primary"> <i class="bi bi-plus-circle"></i> Додај нова Категорија</a>
+
+        </div>
+    </div>
+
+    <table class="table table-bordered table-striped" id="tabela">
+        <thead>
+            <tr>
+                <th>Категорија</th>
+                <th></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item?.categoryName</td>
+                    <td>
+                        <div  role="group" id="actions">
+                            <a asp-area="Admin" asp-controller="Category" asp-action="Edit" asp-route-id="@item?.Id" class="btn btn-primary mx-2">
+                                <i class="bi bi-pencil-square"></i>Измени
+                            </a>
+                            <a asp-area="Admin" asp-controller="Category" asp-action="Delete" asp-route-id="@item?.Id" class="btn btn-danger mx-2">
+                                <i class="bi bi-trash-fill"></i>Избриши
+                            </a>
+                        </div>
+
+                    </td>
+
+                </tr>
+            }
+
+        </tbody>
+
+    </table>

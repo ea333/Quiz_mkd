@@ -1,0 +1,282 @@
+﻿@model List<EventVM>
+
+@{
+    ViewData["Title"] = "Настани";
+}
+
+<div class="text-center">
+    <div class="w-100 px-0" style="margin: 0; padding: 0;">
+        <div style="width: 100vw; margin-left: calc(-50vw + 50%);">
+            <div data-aos="fade-in" style="margin: 0; padding: 0; position: relative; width: 100%; height: 70vh;
+                    background: linear-gradient(rgba(0, 51, 102, 0.85), rgba(0, 51, 102, 0.85)),
+                                url('/Images/event/event-banner.jpg');
+                    background-size: cover; background-position: center; background-repeat: no-repeat;
+                    color: white; text-align: center; display: flex; flex-direction: column;
+                    justify-content: center; align-items: center;">
+                <h1 class="hero-title" style="font-size: 4rem; font-weight: bold;">Настани</h1>
+                <p style="font-size: 1.5rem; margin-bottom: 20px;">
+                    Следи ги најновите квиз настани и активности!
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+    <section class="custom-section-bg" data-aos="fade-up">
+        <!-- Thin lines -->
+        <div class="line-top"></div>
+        <div class="line-bottom"></div>
+
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Left side: Text -->
+                <div class="col-lg-8 text-start">
+                    <p class="lead mb-0">
+                        Македонската Квиз Асоцијација постојано организира возбудливи настани каде можете да го тестирате вашето знаење.
+                        Од редовни мастерс натпревари до специјални тематски квизови, има нешто за секој квиз љубител! <br />
+                        Изберете ги настаните на кои сакате да учествувате и станете дел од нашата растечка квиз заедница.
+                        Следете ги датумите и не пропуштајте ги можностите да освоите награди и да се искачите на ранг листите!
+                    </p>
+                </div>
+
+                <!-- Right side: Font Awesome Icon -->
+                <div class="col-lg-4 emoji-wrapper mt-4 mt-lg-0 text-center">
+                    <i class="fas fa-calendar-alt icon-style"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Events Section -->
+    <section class="py-5 text-white" style="
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    width: 100vw;
+    padding-left: 90px;
+    padding-right: 90px;
+    background: linear-gradient(135deg, #3469a1 0%, #003463 50%, #3469a1 100%);
+">
+
+
+        <div class="container-fluid px-0">
+            <!-- Enhanced Title with Underline Effect -->
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="fw-bold text-white position-relative d-inline-block">
+                    НАЈНОВИ НАСТАНИ
+                    <span style="position: absolute; bottom: -8px; left: 0; right: 0; height: 2px;
+                background: linear-gradient(90deg, transparent, var(--bs-warning), transparent);"></span>
+                </h2>
+            </div>
+
+            <div class="row gx-0 gy-4 justify-content-center" style="padding:10px">
+                @foreach (var item in Model.OrderByDescending(e => e.Event.StartDate))
+                {
+                    <div class="col-sm-6 col-md-4 col-lg-4 px-3" data-aos="zoom-in" data-aos-delay="200">
+
+                        <!-- Date above card -->
+                        <div class="bg-transparent text-white py-1 fw-bold mb-2" style="font-size: 0.9rem; border-radius: 0.25rem; text-align:left">
+                            <i class="bi bi-calendar-event"></i>
+                            @item.Event.StartDate.ToString("dd/MM/yyyy") - @item.Event.EndDate.ToString("dd/MM/yyyy")
+                        </div>
+
+                        <!-- Card -->
+                        <div class="card shadow-sm w-100 text-white"
+                             style="border-radius: .5rem; overflow: hidden; height: 320px; position: relative; transition: transform 0.3s ease, box-shadow 0.3s ease;"
+                             onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 8px 20px rgba(0,0,0,0.4)';"
+                             onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 10px rgba(0,0,0,0.2)';">
+
+                            <!-- Full background image -->
+                            <img src="@(string.IsNullOrEmpty(item.Event.ImageUrl) ? Url.Content("~/Images/default.jpg") : Url.Content(item.Event.ImageUrl))"
+                                 alt="@item.Event.Name"
+                                 style="width:100%; height:100%; object-fit:cover;" />
+
+                            <!-- Dark gradient overlay -->
+                            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+                                            background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.8));"></div>
+
+                            <!-- Text content -->
+                            <div class="card-img-overlay d-flex flex-column justify-content-end text-center" style="z-index:2;">
+                                <h5 class="fw-bold" style="font-size: 1.5rem;">@item.Event.Name</h5>
+                                <p class="mb-3" style="font-size: 0.9rem;">
+                                    @(item.Event.Description?.Length > 100
+                                                                    ? item.Event.Description.Substring(0, 100) + "..."
+                                                                    : item.Event.Description)
+                                </p>
+
+                                <!-- Action Buttons -->
+                                <div class="d-flex justify-content-center">
+                                    <a asp-area="User" asp-controller="Event" asp-action="Detail" asp-route-eventId="@item.Event.Id"
+                                       class="btn btn-dark btn-sm" style="width: 160px;">
+                                        Разгледај
+                                    </a>
+                                </div>
+
+                                <!-- Admin Buttons -->
+                                @if (User.IsInRole(SD.Role_Admin))
+                                {
+                                    <div class="d-flex justify-content-center gap-1 mt-2">
+                                        <a asp-area="Admin" asp-controller="Event" asp-action="Edit" asp-route-id="@item.Event.Id"
+                                           class="btn btn-sm btn-primary">
+                                            <i class="bi bi-pencil"></i>
+                                        </a>
+                                        <a asp-area="Admin" asp-controller="Event" asp-action="Delete" asp-route-id="@item.Event.Id"
+                                           class="btn btn-sm btn-danger">
+                                            <i class="bi bi-trash"></i>
+                                        </a>
+                                        <a asp-area="Admin" asp-controller="RangList" asp-action="PendingUsers" asp-route-eventId="@item.Event.Id"
+                                           class="btn btn-sm btn-warning">
+                                            <i class="bi bi-list-check"></i>
+                                        </a>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            @if (Model.Count > 0)
+            {
+                <style>
+                    .btn-transparent-white {
+                        background: transparent;
+                        border: 2px solid white;
+                        color: white;
+                        transition: background-color 0.3s ease, color 0.3s ease;
+                    }
+
+                        .btn-transparent-white:hover,
+                        .btn-transparent-white:focus {
+                            background-color: white;
+                            color: #003463;
+                            text-decoration: none;
+                        }
+                </style>
+
+                <div class="text-center mt-5" data-aos="fade-up" data-aos-delay="200">
+                    <a asp-area="User" asp-controller="Event" asp-action="Index"
+                       class="btn btn-lg px-5 btn-transparent-white">
+                        Прегледај ги сите настани
+                    </a>
+                </div>
+
+            }
+        </div>
+    </section>
+
+
+
+    @if (User.IsInRole(SD.Role_Admin))
+    {
+        <div class="container text-end mt-4" data-aos="fade-left">
+            <a asp-area="Admin" asp-controller="Event" asp-action="Create" class="btn btn-primary btn-lg">
+                <i class="bi bi-plus-circle"></i> Додај нов настан
+            </a>
+        </div>
+
+        <br>
+    }
+
+    <style>
+        .btn-transparent-border {
+            background-color: var(--bs-primary);
+            color: white;
+            border: 2px solid white;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+            .btn-transparent-border:hover,
+            .btn-transparent-border:focus {
+                background-color: white;
+                color: var(--bs-primary);
+                text-decoration: none;
+            }
+
+        .icon-style {
+            font-size: 10rem;
+            color: #343a40;
+            text-shadow: 0 8px 20px rgba(33, 37, 41, 0.8);
+            margin-right: -15rem;
+        }
+
+
+        @@media (min-width: 992px) {
+            .emoji-wrapper {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding-right: 3rem;
+            }
+        }
+
+        /* Section background with diagonal split */
+        .custom-section-bg {
+            position: relative;
+            width: 100vw;
+            height: 30vw;
+            margin-left: calc(-50vw + 50%);
+            display: flex;
+            align-items: center;
+            background: linear-gradient( 135deg, #343a40 0%, #343a40 65%, #e9edf5 65%, #e9edf5 100% );
+            overflow: hidden;
+            color: white;
+        }
+
+            .custom-section-bg::before,
+            .custom-section-bg::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                right: 0;
+                pointer-events: none;
+                z-index: 1;
+            }
+
+
+            .custom-section-bg::before {
+                top: 0;
+                height: 20%;
+                background: radial-gradient( ellipse at top center, rgba(255, 255, 255, 0.15), transparent );
+            }
+
+            /* Bottom glow */
+            .custom-section-bg::after {
+                bottom: 0;
+                height: 20%;
+                background: radial-gradient( ellipse at bottom center, rgba(255, 255, 255, 0.15), transparent );
+            }
+
+            /* Thin lines on top and bottom */
+            .custom-section-bg > .line-top,
+            .custom-section-bg > .line-bottom {
+                position: absolute;
+                left: 0;
+                right: 0;
+                height: 1.5px;
+                background: rgba(255, 255, 255, 0.2);
+                z-index: 2;
+            }
+
+            .custom-section-bg > .line-top {
+                top: 0;
+            }
+
+            .custom-section-bg > .line-bottom {
+                bottom: 0;
+            }
+    </style>
+
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+    </script>
+</div>
+   

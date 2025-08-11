@@ -1,0 +1,56 @@
+﻿@model ApplicationUserVM
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-4">
+            <h2 class="text-primary">Листа на Пријавени Учесници</h2>
+        </div>
+       
+        <div class="col-4">
+            <a class="btn btn-primary" asp-area="Admin"
+            asp-controller="RangList" asp-action="Index"
+                asp-route-eventId="@Model.EventId">
+                Ранг Листа Додавај Поени</a>
+        </div>
+
+      
+    </div>
+
+    <table class="table table-bordered table-striped" id="tabela">
+        <thead>
+            <tr>
+                
+                <th>Email</th>
+                <th>Име и Презиме</th>
+                <th>Град</th>
+                 <th></th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.UsersList)
+            {
+                <tr>
+                    <td>@item?.Email</td>
+                    <td>@item?.NameUser @item?.Surname </td>
+                    <td>@item?.PlaceOfOrigin</td>
+
+                    <td>
+                        <div class="w-75 btn-group" role="group">
+
+                            <a asp-area="Admin" asp-controller="RangList" 
+                            asp-action="PayedToParticipate" asp-route-userId="@item?.Id" asp-route-eventId="@Model.EventId"  
+                            class="btn btn-success mx-2">
+                                Платено
+                            </a>
+                          
+                        </div>
+
+                    </td>
+
+                </tr>
+            }
+
+        </tbody>
+
+    </table>

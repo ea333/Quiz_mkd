@@ -1,0 +1,46 @@
+﻿@model Answer 
+<div class="card shadow border-0 mt-4" id="create-question-card">
+    <div class="card-header ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="py-2">Измени одговор</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <form method="post">
+            <input asp-for="QuestionId" type="hidden" />
+            <div class="border p-3 mt-4">
+
+                <div class="mb-3 row p-1">
+                    <label asp-for="Text" class="p-0"></label>
+                    <input asp-for="Text" class="form-control" />
+                    <span asp-validation-for="Text" class="text-danger"></span>
+                </div>
+
+
+                <div class="mb-3 row p-1">
+                    <label asp-for="isCorrect" class="p-0"></label>
+                    <div>
+                        <label class="form-check-label" for="isCorrectTrue">Точен</label>
+                        <input type="radio" id="isCorrectTrue" asp-for="isCorrect" value="true" class="form-check-input" />
+
+                        <label class="form-check-label" for="isCorrectFalse">Неточен</label>
+                        <input type="radio" id="isCorrectFalse" asp-for="isCorrect" value="false" class="form-check-input" />
+                    </div>
+                    <span asp-validation-for="isCorrect" class="text-danger"></span>
+                </div>
+
+                <div class="row">
+                    <div >
+                        <button type="submit" class="btn btn-primary form-control">Промени</button>
+                    </div>
+                    <div >
+                        <a asp-area="Admin"  asp-controller="Answer" asp-action="Index" asp-route-id="@Model.QuestionId" class="btn btn-primary form-control">Врати се назад</a>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>

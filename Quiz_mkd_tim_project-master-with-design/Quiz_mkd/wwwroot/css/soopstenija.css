@@ -1,0 +1,224 @@
+﻿#events-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 equal columns */
+    gap: 10px; /* spacing between items */
+    width: 80%;
+    align-items: center;
+    justify-items: center;
+    margin-bottom:5em;
+}
+#details-btn {
+    background-color: #6191ff;
+    border: 2px solid #8ab0d4;
+}
+
+#events-top {
+    height: 30vh;
+/*    background-color: #70a5c9;*/
+    background-image:url("../Images//quiz/top-bg.jpg");
+    background-repeat:no-repeat;
+    background-size:cover;
+    width: 100%;
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    margin-bottom:4em;
+    padding-left:13em;
+
+
+}
+
+#events-top div h2{
+    color: white;
+    width:100%;
+    text-align:center;
+    font-size:4em;
+    font-weight:bold;
+    letter-spacing:3px;
+}
+
+
+#events-container .card {
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+    border-radius: 10px;
+    height: auto;
+    padding-bottom: 2em;
+    opacity: 0;
+    transform: scale(0.8);
+    animation: fadeIn 0.5s ease forwards;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+    #events-container #top-card{
+        display:flex;
+        flex-direction:row;
+        align-items:center;
+        width:100%;
+        justify-content:space-around;
+        margin-top:3em;
+        margin-bottom:3em;
+
+    }
+
+    #top-card img{
+        border-radius:100%;
+        border:3px solid black;
+        width:12em;
+        height:12em;
+    }
+
+    #events-container .card-body{
+        width:100%;
+    }
+    #events-container h4{
+        text-align:center;
+    }
+    
+    #top-card-buttons{
+        display:flex;
+        flex-direction:column;
+        width:40%;
+    }
+    #top-card-buttons a{
+        margin-bottom:1em;
+    }
+
+    #events-container .card .card-body h4{
+        margin-top:2em;
+
+    }
+    #events-container .card .card-footer{
+        width:100%;
+        align-items:center;
+        justify-content:center;
+    }
+#events-container .card .card-footer div{
+    width:100%;
+}
+#admin-btns{
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+    align-items:center;
+}
+#admin-btns a{
+    height:100%;
+}
+    #event-dates {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    #event-dates h5{
+        text-align:center;
+        padding:0;
+    }
+
+
+    #card-event-details{
+        margin-top:10%;
+        margin-bottom:10%;
+        display:flex;
+        flex-direction:row;
+        justify-content:center;
+        width:100%;
+        color:black;
+
+    }
+    #card-event-details img{
+            width:20em;
+            height:20em;
+    }
+    .card-body-event{
+        width:40%;
+        margin-left:8em;
+    }
+     #card-event-details .card-text, #card-event-details ul, #card-event-details li {
+          width: 100%;
+    }
+
+    #card-event-details .card-text {
+        margin-top:2em;
+    }
+.card-body-event ul {
+    padding: 0;
+    font-weight: bold;
+}
+
+#card-event-details .card-title {
+    width: 100%;
+    font-weight: bolder;
+}
+
+
+
+
+
+@media(max-width:840px) {
+    #events-container {
+            grid-template-columns: repeat(1, 1fr);
+            width: 100%;
+        }
+        #top-card img {
+            border-radius: 100%;
+            border: 3px solid black;
+            width: 7em;
+            height: 7em;
+        }
+        #events-container .card h4{
+            font-size:1.4em;
+        }
+        #events-top div{
+            margin:0;
+          
+        }
+        #events-top{
+            flex-direction:column;
+            align-items:center;
+            justify-content:center;
+            padding:0;
+            height:20vh;
+        }
+           
+    }
+
+@media(max-width:800px){
+    #card-event-details {
+        margin-top: 10%;
+        margin-bottom: 10%;
+        display: flex;
+        flex-direction: column;
+        align-items:center;
+        justify-content: center;
+        width: 100%;
+    }
+    .card-body-event{
+        margin:0;
+        margin-top:3em;
+        padding:0;
+        width:70%;
+    }
+
+    .card-body-event .card-title{
+        font-size:1.8em!important;
+        font-weight:bold;
+    }
+    .card-body-event ul{
+        padding:0;
+        font-weight:bold;
+    }
+}
+
+@media(max-widts:560px){
+    
+}
+

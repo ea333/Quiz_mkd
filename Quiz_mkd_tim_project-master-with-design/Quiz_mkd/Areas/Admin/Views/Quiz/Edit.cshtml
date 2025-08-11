@@ -1,0 +1,68 @@
+﻿@model QuizVM
+
+<div class="edit-card">
+    <div class="card-header ml-0 py-3">
+        <div class="row">
+            <div class="">
+                <h2 class="py-2">Измени Kвиз</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <form method="post" enctype="multipart/form-data">
+            <input asp-for="Quiz.Id" type="hidden"/>
+            <input asp-for="Quiz.ImageUrl" type="hidden" />
+
+            <div class="border p-3 mt-4">
+                <div class="mb-3 row p-1">
+
+                    <label asp-for="Quiz.Name" class="p-0"></label>
+                    <input asp-for="Quiz.Name" class="form-control" />
+                    <span asp-validation-for="Quiz.Name" class="text-danger"></span>
+                </div>
+
+
+
+
+                <div class="mb-3 row p-1">
+                    <label asp-for="Quiz.ImageUrl" disabled class="p-0"></label>
+                    <input type="file" name="file" class="form-control" />
+                    @if (!string.IsNullOrEmpty(Model.Quiz.ImageUrl))
+                    {
+                        <img src="@Model.Quiz.ImageUrl" alt="Image" class="img-fluid w-25" />
+                    }
+                </div>
+
+
+                
+
+                @if (Model.Quiz.Id != 0)
+                {
+                    <div class="mb-3 row p-1">
+                        <label class="p-0">Прашања</label>
+
+                        <div class="col-6 col-md-3">
+                            <a asp-area="Admin" asp-controller="Question" asp-action="Index" asp-route-quizId="@Model.Quiz.Id" class="btn btn-primary border form-control">Додај прашања</a>
+                        </div>
+
+                        <div class="col-6 col-md-3">
+                            <a asp-area="Admin" asp-controller="Quiz" asp-action="ExcelFileReader" asp-route-quizId="@Model.Quiz.Id" class=" btn btn-primary border form-control">Прикачи Excel документ</a>
+                        </div>
+
+                    </div>
+                }
+
+                <div class="row">
+                    <div class="col-6 col-md-3">
+                        <button type="submit" class="btn btn-primary form-control">Зачувај</button>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <a asp-area="User" asp-controller="Quiz" asp-action="Index" class="btn btn-primary form-control">Врати се назад</a>
+                    </div>
+                </div>
+
+
+            </div>
+        </form>
+    </div>
+</div>

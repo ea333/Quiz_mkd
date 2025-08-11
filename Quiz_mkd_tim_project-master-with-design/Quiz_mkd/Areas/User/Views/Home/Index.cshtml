@@ -1,0 +1,830 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <style>
+        .banner-container {
+            margin: 0;
+            padding-left: 5vw;
+            padding-right: 5vw;
+            position: relative;
+            width: 100%;
+            height: 90vh;
+            background: linear-gradient(rgba(0, 51, 102, 0.85), rgba(0, 51, 102, 0.85)), url('/Images/home page/banner.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+
+        .banner-text {
+            flex: 1;
+            z-index: 2;
+        }
+
+        .banner-circle-wrapper {
+            flex: 0 0 30%;
+            max-width: 250px;
+            aspect-ratio: 1/1;
+            margin-left: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            border: 4px solid white;
+        }
+
+        .circle-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: 50%;
+        }
+
+        /* Responsive */
+        @@media (max-width: 992px) {
+            .banner-container
+
+        {
+            flex-direction: column;
+
+        }
+
+        .banner-text {
+            margin-bottom: 20px;
+        }
+
+        .banner-circle-wrapper {
+            margin-left: 0;
+            width: 40%;
+            max-width: 200px;
+        }
+
+        }</style>
+
+    <div class="w-100 px-0" style="margin: 0; padding: 0;">
+        <div style="width: 100vw; margin-left: calc(-50vw + 50%);">
+            <div class="banner-container">
+
+                <div class="banner-text" style="text-align:left" data-aos="fade-right" data-aos-duration="1000">
+                    <h1 class="display-4 fw-bold">МАКЕДОНСКА КВИЗ АСОЦИЈАЦИЈА</h1>
+                    <p class="lead mt-3">
+                        Македонската Квиз Асоцијација (МКА) е главната организација на квиз-љубителите во Македонија.
+                        Основана е во 2021 година и претставува забавен начин на учење, натпреварување и градење заедница со знаење.
+                    </p>
+                    <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-lg btn-warning mt-4 px-5">
+                        Регистрирај се веднаш!
+                    </a>
+                </div>
+
+                <div class="banner-circle-wrapper" data-aos="fade-left" data-aos-duration="1000">
+                    <img src="~/Images/home page/logo.png" alt="Circle Banner Image" class="circle-image">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="image-circle-section container-fluid py-5 bg-custom">
+        <div class="line-top"></div>
+        <div class="line-bottom"></div>
+
+        <style>
+            .bg-custom {
+                background: url('@Url.Content("~/Images/home page/firstsection.jpg")') no-repeat center center;
+                background-size: cover;
+                width: 100vw;
+                height: 80vh; 
+                margin-left: calc(-50vw + 50%);
+                position: relative;
+            }
+
+                .bg-custom::before,
+                .bg-custom::after {
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    height: 1.5px;
+                    background: rgba(255, 255, 255, 0.2);
+                    z-index: 10;
+                }
+
+                .bg-custom::before {
+                    top: 0;
+                }
+
+                .bg-custom::after {
+                    bottom: 0;
+                }
+            .bubble-cluster {
+                position: relative;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 4rem;
+                height: 380px;
+                transform: translateX(-18%);
+            }
+
+            .bubble {
+                border-radius: 50%;
+                overflow: hidden;
+                box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+                border: 4px solid white;
+                position: absolute;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+                .bubble img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+
+            .bubble1 {
+                width: 240px;
+                height: 240px;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: 3;
+            }
+
+            .bubble2 {
+                width: 200px;
+                height: 200px;
+                top: 120px;
+                left: calc(50% - 180px);
+                z-index: 2;
+            }
+
+            .bubble3 {
+                width: 220px;
+                height: 220px;
+                top: 130px;
+                left: calc(50% + 100px);
+                z-index: 2;
+            }
+
+            .bubble:hover {
+                transform: scale(1.07);
+                box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+            }
+
+            .text-content .text-box {
+                
+                border-radius: 40px;
+                padding: 1.8rem;
+                border: 3px solid #ffc107;
+                box-shadow: 0 0 15px 5px rgba(255, 193, 7, 0.4), inset 0 0 10px rgba(255, 193, 7, 0.6);
+            }
+
+            .text-content {
+                transform: translateX(-10%);
+                position: relative;
+                left: -60px;
+            }
+
+                .text-content .text-box h2 {
+                    font-size: 1.7rem !important;
+                }
+
+                .text-content .text-box p {
+                    font-size: 0.95rem !important;
+                    line-height: 1.3 !important;
+                }
+
+            /* Mobile fix */
+            @@media (max-width: 768px) {
+                .bubble-cluster {
+                    height: auto;
+                    flex-direction: column;
+                    position: static;
+                }
+
+                .bubble1, .bubble2, .bubble3 {
+                    position: static;
+                    margin: 1rem auto;
+                    transform: none;
+                }
+
+                .bubble1 {
+                    width: 180px;
+                    height: 180px;
+                }
+
+                .bubble2 {
+                    width: 160px;
+                    height: 160px;
+                }
+
+                .bubble3 {
+                    width: 170px;
+                    height: 170px;
+                }
+
+                .text-content {
+                    left: -40px;
+                    transform: none;
+                }
+            }
+        </style>
+
+        <div class="row justify-content-center align-items-center">
+            <div class="col-lg-6 mb-4">
+                <div class="bubble-cluster">
+                    <div class="bubble bubble1" data-aos="zoom-in">
+                        <img src="~/Images/home page/1.jpg" alt="Bubble 1">
+                    </div>
+                    <div class="bubble bubble2" data-aos="zoom-in" data-aos-delay="200">
+                        <img src="~/Images/home page/2.jpg" alt="Bubble 2">
+                    </div>
+                    <div class="bubble bubble3" data-aos="zoom-in" data-aos-delay="400">
+                        <img src="~/Images/home page/3.jpg" alt="Bubble 3">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 text-start text-content" data-aos="fade-left" data-aos-delay="600">
+                <div class="text-box bg-transparent text-white">
+                    <h2 class="fw-bold mb-3 lead mb-2">Предизвикај го умот и освој го првото место!</h2>
+                    <p class="lead mb-2">
+                        Нашата асоцијација нуди во живо и онлајн квизови со повеќекратен избор
+                        прилагодени за различни нивоа на знаење. </br>
+                        Стекнувај нови пријателства и уживај во одлична
+                        социјализација преку споделување на знаење и искуства.
+                        Секогаш те очекуваат нови настани, интересни квизови и можности да се докажеш.
+                        </br> Знаењето е патот кон успехот — приклучи се денес!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="py-5 text-center"
+             style="position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; width: 100vw;
+            background: linear-gradient(135deg, #3469a1 0%, #003463 50%, #3469a1 100%);">
+        <div class="px-4 lead mb-2">
+            <h2 class="fw-bold position-relative d-inline-block  text-white" data-aos="fade-up">
+                Како функционира?
+                <span style="position: absolute; bottom: -8px; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--bs-warning), transparent);"></span>
+            </h2>
+            <div class="d-flex flex-wrap justify-content-center gap-4" style="margin-top: 40px">
+
+                <div class="card border-0 shadow-sm text-center p-4 rounded-4" style="width: 350px;" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="card-body text-white rounded-4 border-start border-end border-3 border-white">
+                        <div class="mb-3">
+                            <i class="fas fa-user-plus fa-3x icon-shadow"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">1. Регистрирај се</h5>
+                        <p class="small" style="line-height:1.6;">
+                            Направи бесплатен профил и приклучи се на заедницата.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card border-0 shadow-sm text-center p-4 rounded-4" style="width: 350px;" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="card-body text-white rounded-4 border-start border-end border-3 border-white">
+                        <div class="mb-3">
+                            <i class="fas fa-edit fa-3x icon-shadow"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">2. Решавај квизови</h5>
+                        <p class="small" style="line-height:1.6;">
+                            Провери го твоето знаење и освој поени.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card border-0 shadow-sm text-center p-4 rounded-4" style="width: 350px;" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="card-body text-white rounded-4 border-start border-end border-3 border-white">
+                        <div class="mb-3">
+                            <i class="fas fa-medal fa-3x icon-shadow"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">3. Натпреварувај се</h5>
+                        <p class="small" style="line-height:1.6;">
+                            Постави се на врвот на ранг листата и добиј признание!
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .icon-shadow {
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
+        }
+
+
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-color: #003463 !important;
+        }
+
+            .card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            }
+    </style>
+
+
+    <div class="line-top"></div>
+    <div class="line-bottom"></div>
+    <section class="image-circle-section container-fluid py-5 bg-custom2">
+        <style>
+            .bg-custom2 {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center; 
+                min-height: 80vh;
+                width: 100vw;
+                margin-left: calc(-50vw + 50%);
+                position: relative;
+                background: url('@Url.Content("~/Images/home page/secondsection.jpg")') no-repeat center center;
+                background-size: cover;
+                color: white;
+            }
+
+                
+                .bg-custom2::before,
+                .bg-custom2::after {
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    height: 1.5px;
+                    background: rgba(255, 255, 255, 0.2);
+                    z-index: 10;
+                }
+
+                .bg-custom2::before {
+                    top: 0;
+                }
+
+                .bg-custom2::after {
+                    bottom: 0;
+                }
+
+           
+                .bg-custom2 .circle-wrapper {
+                    width: 250px;
+                    height: 250px;
+                    margin: 0 auto;
+                    border-radius: 50%;
+                    overflow: hidden;
+                    border: 4px solid white;
+                    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+                    transition: transform 0.3s ease, box-shadow 0.3s ease;
+                }
+
+                    .bg-custom2 .circle-wrapper img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+
+                    .bg-custom2 .circle-wrapper:hover {
+                        transform: scale(1.07);
+                        box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+                    }
+
+        
+                .bg-custom2 .text-box {
+                    border: 3px solid #ffc107;
+                    box-shadow: 0 0 15px 5px rgba(255, 193, 7, 0.4), inset 0 0 10px rgba(255, 193, 7, 0.6);
+                    border-radius: 40px;
+                    padding: 1.6rem;
+                }
+
+                .bg-custom2 .text-content2 {
+                    position: relative;
+                    left: 120px;
+                }
+
+                    .bg-custom2 .text-content2 .text-box p {
+                        font-size: 0.95rem !important;
+                        line-height: 1.3 !important;
+                    }
+
+        
+                .bg-custom2 .bubble-effect {
+                    position: relative;
+                    border: 4px solid #ffc107;
+                    box-shadow: 0 0 15px 5px rgba(255, 193, 7, 0.4), inset 0 0 10px rgba(255, 193, 7, 0.6);
+                    background-color: #ffc107;
+                    transition: transform 0.3s ease-in-out;
+                    animation: pulseBubble 3s infinite ease-in-out;
+                    max-width: 600px;
+                    padding: 2rem 2.5rem;
+                    text-align: center;
+                    color: white;
+                }
+
+                    .bg-custom2 .bubble-effect:hover {
+                        transform: scale(1.05);
+                        box-shadow: 0 0 25px 10px rgba(255, 193, 7, 0.6), inset 0 0 15px rgba(255, 193, 7, 0.8);
+                        color: #f8f9fa;
+                    }
+
+                    .bg-custom2 .bubble-effect h1 {
+                        font-size: 1.8rem;
+                        font-weight: 700;
+                        margin: 0;
+                        color: inherit;
+                        text-shadow: 0 0 4px rgba(0, 0, 0, 0.6), 0 0 8px rgba(0, 0, 0, 0.4);
+                    }
+
+                .bg-custom2 .row {
+                    width: 100%;
+                    margin: 0;
+                }
+
+                .bg-custom2 > section.py-5.text-center {
+                    padding-top: 1rem !important;
+                    padding-bottom: 1rem !important;
+                    margin-top: 1rem;
+                    width: 100%;
+                }
+
+            /* Mobile fix */
+            @@media (max-width: 768px) {
+                .bg-custom2 .text-content2
+
+            {
+                left: 0;
+                margin-top: 1rem;
+            }
+
+            .bg-custom2 .circle-wrapper {
+                width: 180px;
+                height: 180px;
+            }
+
+            }</style>
+
+        <div class="row justify-content-center align-items-center">
+            <div class="col-lg-6 text-start text-content2 bg-transparent text-white" data-aos="fade-right" data-aos-delay="100">
+                <div class="text-box">
+                    <p class="lead mb-2">
+                        Нашата цел е да обезбедиме интерактивна и квалитетна платформа за учење
+                        преку квизови кои развиваат критичко размислување и поттикнуваат љубов кон знаењето. <br />
+                        Учесниците имаат можност да се натпреваруваат на локални и регионални настани,
+                        да градат пријателства и да напредуваат на ранг-листите со секој нов предизвик.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-5 text-center mb-4 mb-lg-0" data-aos="fade-left" data-aos-delay="300">
+                <div class="circle-wrapper" style="margin-right: 80px">
+                    <img src="~/Images/home page/Pub-Quiz-Hero-resized.jpg"
+                         alt="Quiz Visual"
+                         class="img-fluid" />
+                </div>
+            </div>
+        </div>
+
+        <br />
+        <br />
+
+        <section class="lead mb-2 text-center">
+            <a asp-area="User" asp-controller="Quiz" asp-action="Index"
+               class="py-4 px-5 d-inline-block rounded-pill bubble-effect text-decoration-none"
+               data-aos="zoom-in"
+               data-aos-delay="400">
+                <h1 class="mb-0">Подготвен си за предизвик?</h1>
+            </a>
+        </section>
+    </section>
+
+
+    <section class="py-5 text-white" style="
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    width: 100vw;
+    padding-left: 90px;
+    padding-right: 90px;
+    background: linear-gradient(135deg, #3469a1 0%, #003463 50%, #3469a1 100%);
+">
+        <div class="container-fluid px-0">
+
+
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="fw-bold text-white position-relative d-inline-block">
+                    Најнови Настани
+                    <span style="position: absolute; bottom: -8px; left: 0; right: 0; height: 2px;
+                background: linear-gradient(90deg, transparent, var(--bs-warning), transparent);"></span>
+                </h2>
+            </div>
+
+            <div class="row gx-0 gy-4 justify-content-center" style="padding: 10px;">
+                @foreach (var item in Model)
+                {
+                    <div class="col-sm-6 col-md-4 col-lg-4 px-3" data-aos="zoom-in" data-aos-delay="200">
+              
+                        <div class="bg-transparent text-white py-1 fw-bold mb-2" style="font-size: 0.9rem; border-radius: 0.25rem; text-align:left;">
+                            <i class="bi bi-calendar-event"></i>
+                            @item.Event.StartDate.ToString("dd/MM/yyyy") - @item.Event.EndDate.ToString("dd/MM/yyyy")
+                        </div>
+
+                        <div class="card shadow-sm w-100 text-white"
+                             style="border-radius: .5rem; overflow: hidden; height: 320px; position: relative; transition: transform 0.3s ease, box-shadow 0.3s ease;"
+                             onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 8px 20px rgba(0,0,0,0.4)';"
+                             onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 10px rgba(0,0,0,0.2)';">
+
+                            <img src="@(string.IsNullOrEmpty(item.Event.ImageUrl) ? Url.Content("~/Images/default.jpg") : Url.Content(item.Event.ImageUrl))"
+                                 alt="@item.Event.Name"
+                                 style="width:100%; height:100%; object-fit:cover;" />
+
+                            <div style="
+                                position: absolute;
+                                top: 0; left: 0; right: 0; bottom: 0;
+                                background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.8));
+                            "></div>
+
+                            <div class="card-img-overlay d-flex flex-column justify-content-end text-center" style="z-index:2;">
+                                <h5 class="fw-bold" style="font-size: 1.5rem;">@item.Event.Name</h5>
+                                <p class="mb-3" style="font-size: 0.9rem;">
+                                    @(item.Event.Description?.Length > 100
+                                                                    ? item.Event.Description.Substring(0, 100) + "..."
+                                                                    : item.Event.Description)
+                                </p>
+
+                                <div class="d-flex justify-content-center">
+                                    <a asp-area="User" asp-controller="Event" asp-action="Detail" asp-route-eventId="@item.Event.Id"
+                                       class="btn btn-dark btn-sm" style="width: 160px;">
+                                        Разгледај
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            @if (Model.Count > 0)
+            {
+                <style>
+                    .btn-transparent-border {
+                        background-color: var(--bs-primary); /* Bootstrap primary background */
+                        color: white;
+                        border: 2px solid white;
+                        border-radius: 50px;
+                        transition: all 0.3s ease;
+                    }
+
+                        .btn-transparent-border:hover,
+                        .btn-transparent-border:focus {
+                            background-color: white;
+                            color: var(--bs-primary);
+                            text-decoration: none;
+                        }
+                </style>
+
+                <div class="text-center mt-5" data-aos="fade-up" data-aos-delay="200">
+                    <a asp-area="User" asp-controller="Event" asp-action="Index"
+                       class="btn btn-lg btn-transparent-border px-5">
+                        Прегледај повеќе настани
+                    </a>
+                </div>
+            }
+        </div>
+
+
+        <style>
+            .btn-transparent-border {
+                background-color: var(--bs-primary); 
+                color: white;
+                border: 2px solid white;
+                border-radius: 50px;
+                transition: all 0.3s ease;
+            }
+
+                .btn-transparent-border:hover,
+                .btn-transparent-border:focus {
+                    background-color: white;
+                    color: var(--bs-primary);
+                    text-decoration: none;
+                }
+
+        </style>
+    </section>
+
+    <section class="custom-section-bg py-5 text-white text-center" data-aos="fade-up">
+        <div class="line-top"></div>
+        <div class="line-bottom"></div>
+
+        <div class="container px-0">
+            <h2 class="fw-bold position-relative d-inline-block text-white" data-aos="fade-up">
+                Ранг Листа
+                <span style="position: absolute; bottom: -8px; left: 0; right: 0; height: 2px;
+                background: linear-gradient(90deg, transparent, var(--bs-warning), transparent);"></span>
+            </h2>
+
+            <div class="row justify-content-center g-4" style="margin-top: 40px">
+                @{
+                    var topCompetitors = (IEnumerable<dynamic>)ViewBag.TopCompetitors;
+                    var numbers = new[] { "1", "2", "3" };
+                }
+
+                @if (topCompetitors != null && topCompetitors.Any())
+                {
+                    int index = 0;
+                    foreach (var competitor in topCompetitors)
+                    {
+                        <div class="col-12 col-sm-6 col-lg-3 d-flex justify-content-center"
+                             data-aos="zoom-in" data-aos-delay="@(200 + index * 150)">
+                            <div class="competitor-card d-flex flex-column align-items-center justify-content-center text-center p-4">
+                                <div class="mb-3">
+                                    <i class="fas fa-medal fa-3x icon-shadow"></i>
+                                </div>
+                                <div class="rank-circle mb-3">@numbers[index]</div>
+                                <h4 class="fw-bold">@competitor.FullName</h4>
+                                <p class="mt-2 mb-0">
+                                    Поени: <span class="fw-bold">@competitor.Points</span>
+                                </p>
+                            </div>
+                        </div>
+                        index++;
+                    }
+                }
+                else
+                {
+                    <p class="text-center text-danger">Нема достапни резултати.</p>
+                }
+            </div>
+
+            <div class="text-center mt-5" data-aos="fade-up" data-aos-delay="400">
+                <a asp-area="User" asp-controller="RangList" asp-action="Index"
+                   class="btn btn-lg custom-btn">
+                    Види целосна ранг листа
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <style>
+        .custom-section-bg {
+            position: relative;
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            background: linear-gradient(135deg, #343a40 0%, #343a40 100%);
+            overflow: hidden;
+            color: white;
+        }
+
+            .custom-section-bg::before,
+            .custom-section-bg::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                right: 0;
+                pointer-events: none;
+                z-index: 1;
+            }
+
+            .custom-section-bg::before {
+                top: 0;
+                height: 20%;
+                background: radial-gradient(ellipse at top center, rgba(255, 255, 255, 0.15), transparent);
+            }
+
+            .custom-section-bg::after {
+                bottom: 0;
+                height: 20%;
+                background: radial-gradient(ellipse at bottom center, rgba(255, 255, 255, 0.15), transparent);
+            }
+
+            .custom-section-bg > .line-top,
+            .custom-section-bg > .line-bottom {
+                position: absolute;
+                left: 0;
+                right: 0;
+                height: 1.5px;
+                background: rgba(255, 255, 255, 0.2);
+                z-index: 2;
+            }
+
+            .custom-section-bg > .line-top {
+                top: 0;
+            }
+
+            .custom-section-bg > .line-bottom {
+                bottom: 0;
+            }
+
+        .competitor-card {
+            width: 250px;
+            height: 300px;
+            border-radius: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(6px);
+            color: white;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+            .competitor-card:hover {
+                transform: scale(1.05);
+                box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            }
+
+        .rank-circle {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: white;
+            color: black;
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.7);
+        }
+
+        .icon-shadow {
+            color: white;
+            text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8);
+        }
+
+        .custom-btn {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+            padding: 12px 40px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+            .custom-btn:hover {
+                background: white;
+                color: black;
+            }
+    </style>
+
+    <section class="py-5 text-center"
+             style="position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; width: 100vw;
+            background: linear-gradient(135deg, #3469a1 0%, #003463 50%, #3469a1 100%);">
+        <div class="px-4 lead mb-2">
+            <h2 class="fw-bold position-relative d-inline-block  text-white" data-aos="fade-down" data-aos-delay="100">
+                Зошто да учествуваш?
+                <span style="position: absolute; bottom: -8px; left: 0; right: 0; height: 2px;
+        background: linear-gradient(90deg, transparent, var(--bs-warning), transparent);"></span>
+            </h2>
+            <div class="d-flex flex-wrap justify-content-center gap-4" style="margin-top: 40px">
+
+                <div class="card border-0 shadow-sm text-center p-4 rounded-4" style="width: 350px;" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="card-body text-white rounded-4 border-start border-end border-3 border-white">
+                        <h5 class="fw-bold mb-3">Учиш преку игра</h5>
+                        <p class="small" style="line-height:1.6;">
+                            Секој квиз е можност за ново знаење.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card border-0 shadow-sm text-center p-4 rounded-4" style="width: 350px;" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="card-body text-white rounded-4 border-start border-end border-3 border-white">
+                        <h5 class="fw-bold mb-3">Освој поени и награди</h5>
+                        <p class="small" style="line-height:1.6;">
+                            Биди најдобар и докажи го тоа на табелата.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card border-0 shadow-sm text-center p-4 rounded-4" style="width: 350px;" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="card-body text-white rounded-4 border-start border-end border-3 border-white">
+                        <h5 class="fw-bold mb-3">Стани дел од заедница</h5>
+                        <p class="small" style="line-height:1.6;">
+                            Поврзи се со луѓе со исти интереси.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+    </script>
+</div>

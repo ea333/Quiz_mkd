@@ -1,0 +1,92 @@
+﻿@model QuizVM
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-4">
+            <h2 class="text-primary">Листа на Прашања за @Model.Quiz.Name</h2>
+        </div>
+        <div class="col-4">
+            <h2 class="text-primary">Број Прашања селектирани: @Model.count</h2>
+        </div>
+        <div class="col-4">
+
+            <form asp-area="Admin" asp-controller="Question" asp-action="FilterQuestions" method="post">
+                <input type="hidden" asp-for="@Model.QuizId"/>
+                <label class="p-0">Селектирај Тип на Прашање</label>
+            <select asp-for="SelectedTypeQuestionId" asp-items="@Model.TypeQuestions" class="p-0 form-select">
+                    <option value="" selected>--Сите типови--</option>
+                </select>
+            <span asp-validation-for="SelectedTypeQuestionId" class="text-danger"></span>
+                <div class="col-3">
+                    <button type="submit" class="btn btn-success">Пребарај</button>
+                </div>
+            </form>
+            
+        </div>
+    </div>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+
+                <th>Прашање</th>
+                @for (int i = 1; i <= 4; i++)
+                {
+                    <th>Одговор @i:</th>    
+                }
+                <th>Тип на Прашање</th>
+                <th></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.QuestionListBelongs)
+            {
+                <tr>
+                    <td>@item?.Question?.Text</td>
+                  @foreach(var answer in item.Question.AnswersList)
+                  {
+                        <td>@answer.Text</td>
+                  }
+                  <td>@item?.Question?.TypeQuestion?.Type</td>
+
+                    @if (item.flagBelongs)
+                    {
+                        <td>
+
+                            <div class="w-75 btn-group" role="group">
+                                <a asp-area="Admin" asp-controller="Question"
+                                   asp-action="RemoveFromQuiz"
+                                   asp-route-quizId="@Model.Quiz.Id" asp-route-questionId="@item.Question.Id" 
+                                class="btn btn-danger mx-2">
+                                    Отстрани
+                                </a>
+
+                            </div>
+
+                        </td>
+                    }else
+                    {
+
+                        <td>
+
+                            <div class="w-75 btn-group" role="group">
+                                <a asp-area="Admin" asp-controller="Question"
+                                   asp-action="AddToQuiz"
+                                   asp-route-quizId="@Model.Quiz.Id" asp-route-questionId="@item.Question.Id"
+                                   class="btn btn-success mx-2">
+                                    Додаj
+                                </a>
+
+                            </div>
+
+                        </td>
+                    }
+
+
+                </tr>
+            }
+
+        </tbody>
+
+    </table>

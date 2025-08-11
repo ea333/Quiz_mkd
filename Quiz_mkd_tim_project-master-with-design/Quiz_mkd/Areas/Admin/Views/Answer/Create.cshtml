@@ -1,0 +1,54 @@
+﻿@model AnswerVM
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="py-2">Креирај одговор</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <form method="post">
+            <input asp-for="Question.Id" type="hidden"/>
+            <div class="border p-3 mt-4">
+
+                <div class="mb-3 row p-1">
+                    <label asp-for="Question.Text" class="p-0"></label>
+                    <input disabled asp-for="Question.Text" class="form-control" />
+                    <span asp-validation-for="Question.Text" class="text-danger"></span>
+                </div>
+
+            
+                <div class="mb-3 row p-1">
+                    <label asp-for="Answer.Text" class="p-0"></label>
+                    <input asp-for="Answer.Text" class="form-control" />
+                    <span asp-validation-for="Answer.Text" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3 row p-1">
+                    <label asp-for="Answer.isCorrect" class="p-0"></label>
+                    <div>
+                        <label class="form-check-label" for="isCorrectTrue">Точен</label>
+                        <input type="radio" id="isCorrectTrue" asp-for="Answer.isCorrect" value="true" class="form-check-input" />
+
+                        <label class="form-check-label" for="isCorrectFalse">Неточен</label>
+                        <input type="radio" id="isCorrectFalse" asp-for="Answer.isCorrect" value="false" class="form-check-input" />
+                    </div>
+                    <span asp-validation-for="Answer.isCorrect" class="text-danger"></span>
+                </div>
+
+              
+                <div class="row">
+                    <div class="col-6 col-md-3">
+                        <button type="submit" class="btn btn-primary form-control">Додади</button>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <a asp-area="Admin" asp-controller="Question" asp-action="Create" class="btn btn-primary form-control">Врати се назад</a>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
