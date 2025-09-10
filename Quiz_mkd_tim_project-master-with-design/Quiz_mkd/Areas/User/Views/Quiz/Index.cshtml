@@ -1,61 +1,82 @@
 ﻿@model List<Quiz>
 
+<section style="width: 100%; margin: 0; padding: 0; margin-top: -3rem">
+    <div style="
+        width: 100%;
+        height: 450px;
+        background: linear-gradient(rgba(0, 51, 102, 0.85), rgba(0, 51, 102, 0.85)),
+                    url('/Images/quiz/quiz.jpg') center/cover no-repeat;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: white;">
 
+        <h1 style="font-size: 4rem; font-weight: bold;">Онлајн Квизови</h1>
 
-<div class="quiz-container">
-    <div id="events-top">
-        <div>
-            <h2>Онлајн Квизови</h2>
-        </div>
+        <p style="font-size: 1.5rem; margin-bottom: 1.5rem;">
+            Тестирај го твоето знаење со нашите квизови по различни области.
+        </p>
 
         @if (User.IsInRole(SD.Role_Admin))
         {
-            <div>
-                <a asp-area="Admin" asp-controller="Quiz" asp-action="Create" class="btn btn-primary"> <i class="bi bi-plus-circle"></i> Додај нов квиз</a>
-
-            </div>
+            <a asp-area="Admin" asp-controller="Quiz" asp-action="Create"
+               class="btn quiz-add-btn">
+                <i class="bi bi-plus-circle"></i> Додај нов квиз
+            </a>
         }
     </div>
-    <div class="quiz-cards-container" >
+</section>
 
-    @for(int i=0; i < Model.Count; i++)
-    {
-         var item = Model[i];
-        
-
-        
-
+<div class="quiz-container">
+    <div class="quiz-cards-container">
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            var item = Model[i];
             <div class="card">
                 <img class="card-img-top" src="@item.ImageUrl" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title">@item.Name</h5>
-                    
                 </div>
                 <div class="card-footer">
-                    <a asp-area="User" asp-controller="PlayQuiz" asp-action="Index" asp-route-quizId="@item?.Id" class="btn btn-warning mx-2" id="admin-button">
+                    <a asp-area="User" asp-controller="PlayQuiz" asp-action="Index" asp-route-quizId="@item?.Id"
+                       class="btn btn-warning mx-2" id="admin-button">
                         Играј Квиз
                     </a>
                     <div class="admin-buttons">
-                    @if (User.IsInRole(SD.Role_Admin))
-                    {
-                        <a asp-area="Admin" asp-controller="Quiz" asp-action="Edit" asp-route-id="@item?.Id"  class="admin-button">
-                            <i class="bi bi-pencil-square"></i>Измени
-                        </a>
-                        <a asp-area="Admin" asp-controller="Quiz" asp-action="Delete" asp-route-id="@item?.Id"  class="admin-button">
-                            <i class="bi bi-trash-fill"></i>Избриши
-                        </a>
-                        <a asp-area="Admin" asp-controller="Quiz" asp-action="Detail" asp-route-quizId="@item?.Id"  class="admin-button">
-                            Разгледај Квиз
-                        </a>
-                    }
+                        @if (User.IsInRole(SD.Role_Admin))
+                        {
+                            <a asp-area="Admin" asp-controller="Quiz" asp-action="Edit" asp-route-id="@item?.Id" class="admin-button">
+                                <i class="bi bi-pencil-square"></i> Измени
+                            </a>
+                            <a asp-area="Admin" asp-controller="Quiz" asp-action="Delete" asp-route-id="@item?.Id" class="admin-button">
+                                <i class="bi bi-trash-fill"></i> Избриши
+                            </a>
+                            <a asp-area="Admin" asp-controller="Quiz" asp-action="Detail" asp-route-quizId="@item?.Id" class="admin-button">
+                                Разгледај Квиз
+                            </a>
+                        }
                     </div>
-                   
                 </div>
-
             </div>
-        
-       
-    }
+        }
     </div>
-
 </div>
+
+<style>
+    .quiz-add-btn {
+        padding: 1rem 3rem;
+        font-size: 1.2rem;
+        background-color: transparent;
+        color: white;
+        border: 2px solid white;
+        transition: all 0.3s ease;
+        margin-top: 2rem;
+    }
+
+        .quiz-add-btn:hover {
+            background-color: white !important;
+            color: #2b3035 !important;
+        }
+</style>

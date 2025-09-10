@@ -80,8 +80,8 @@ namespace Quiz.Web.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required]
-            [EmailAddress]
+            [Required(ErrorMessage = "Емаил е задолжителен.")]
+            [EmailAddress(ErrorMessage = "Внесете валиден емаил.")]
             [Display(Name = "Емаил")]
             public string Email { get; set; }
 
@@ -90,7 +90,7 @@ namespace Quiz.Web.Areas.Identity.Pages.Account
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [StringLength(100, ErrorMessage = "Лозинката мора да има најмалку {2} и најмногу {1} карактери.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Лозинка")]
             public string Password { get; set; }
@@ -100,22 +100,22 @@ namespace Quiz.Web.Areas.Identity.Pages.Account
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [DataType(DataType.Password)]
-            [Display(Name = "Потврди Лозинка")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Display(Name = "Повтори Лозинка")]
+            [Compare("Password", ErrorMessage = "Лозинката и повторената лозинка не се совпаѓаат.")]
             public string ConfirmPassword { get; set; }
 
 
             [Display(Name = "Телефонски број")]
             public string PhoneNumber   { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "Името е задолжително.")]
             [Display(Name = "Име")]
             public string NameUser { get; set; }
-            [Required]
+            [Required(ErrorMessage = "Презимето е задолжително.")]
             [Display(Name = "Презиме")]
             public string  Surname { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "Градот е задолжителен.")]
             [Display(Name = "Град")]
             public string PlaceOfOrigin { get; set; }
 

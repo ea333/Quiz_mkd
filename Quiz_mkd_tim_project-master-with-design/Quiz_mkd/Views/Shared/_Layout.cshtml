@@ -122,7 +122,7 @@
                                 <a class="nav-link " asp-area="Admin" asp-controller="TypeQuestion" asp-action="Index">Тип на Квиз</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" asp-area="Admin" asp-controller="User" asp-action="Index">Users</a>
+                                <a class="nav-link" asp-area="Admin" asp-controller="User" asp-action="Index">Корисници</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" asp-area="Admin" asp-controller="Email" asp-action="Create">Прати Маил</a>
@@ -163,8 +163,11 @@
                 &copy; МКА 
             </div>
             <div class="text" style="color:lightslategray; text-align:end;  width:80%;">
-                Page developed by: FINKI Students - Timski Proekt
-                <br> By prof. Lasko Basnarkov
+                Страната е изработена од:
+                <a asp-area="User" asp-controller="Team" asp-action="Index" style="color:inherit; text-decoration:underline;">
+                    FINKI Студенти
+                </a> - Тимски проект
+                <br> Водено од проф. Ласко Баснарков
             </div>
         </div>
     </footer>

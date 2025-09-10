@@ -3,7 +3,7 @@
 
 <div id="create-question-card">
 
-    <h2 class="text-primary">Compose Email</h2>
+    <h2 class="text-primary">Состави маил</h2>
 
         @if (Model.emailsSent) 
         {
@@ -13,14 +13,14 @@
     <form method="post">
         <!-- Subject Input -->
     <div class="mb-3 text-primary">
-            <label asp-for="@Model.subject" class="form-label">Subject</label>
-            <input asp-for="@Model.subject"  class="form-control" placeholder="Enter subject" required>
+            <label asp-for="@Model.subject" class="form-label">Предмет</label>
+            <input asp-for="@Model.subject"  class="form-control" placeholder="Внеси предмет" required>
         </div>
 
         <!-- Message Textarea -->
     <div class="mb-3 text-primary">
-            <label asp-for="@Model.htmlMessage" class=" form-label">Message</label>
-            <textarea asp-for="@Model.htmlMessage"class=" form-control" rows="5" placeholder="Write your message here..." required></textarea>
+            <label asp-for="@Model.htmlMessage" class=" form-label">Содржина</label>
+            <textarea asp-for="@Model.htmlMessage"class=" form-control" rows="5" placeholder="Пишете ја вашата порака овде" required></textarea>
         </div>
 
         @* <!-- File Upload (Image) -->
@@ -35,7 +35,7 @@
         </div> *@
 
         <!-- Send Button -->
-        <button type="submit" class="btn btn-primary">Send Email</button>
+        <button type="submit" class="btn btn-primary">Прати маил</button>
     </form>
 </div>
 
